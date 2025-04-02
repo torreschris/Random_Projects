@@ -1,10 +1,15 @@
 import streamlit as st
 import pandas as pd
+import os
 
 st.set_page_config(layout="wide")
 
 #csv_file = 'https://raw.githubusercontent.com/jon-AG/AmiAmi-Sales/a086ec56a75a9ba987f91d3185889c67f2f56f33/AmiAmi_sales.csv'
+dir_path = os.path.dirname(os.path.realpath(__file__))
 csv_file = 'AmiAmi_sales.csv'
+csv_file = os.path.join(dir_path, csv_file)
+
+
 st.title('AmiAmi Sale Tracker!')
 
 df = pd.read_csv(csv_file,delimiter='|',header=1)
