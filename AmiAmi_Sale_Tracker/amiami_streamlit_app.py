@@ -62,7 +62,7 @@ with st.sidebar:
     if reload:
         df = pd.read_csv(csv_file,delimiter='|',header=0)
     st.write('Last updated:')
-    st.write(pst_time.strftime("%Y-%m-%d %I:%M:%S %p %Z"))
+    st.write(str(pst_time)[:-6])
     
     st.divider()
 
