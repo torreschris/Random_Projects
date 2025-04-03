@@ -19,8 +19,7 @@ csv_file = 'https://raw.githubusercontent.com/jon-AG/AmiAmi-Sales/refs/heads/mai
 df = pd.read_csv(csv_file,delimiter='|',header=0)
 
 with st.sidebar:
-
-    st.image('https://img.amiami.com/images/genre/icon/1000.png',use_container_width=True)
+    st.image('https://img.amiami.com/images/genre/icon/1001.png')
     reload = st.button('Reload',use_container_width=True)
     if reload:
         df = pd.read_csv(csv_file,delimiter='|',header=0)
