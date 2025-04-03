@@ -61,6 +61,6 @@ with c[1]:
 
 
 
-st.write(df.to_markdown(), unsafe_allow_html=True)
+st.write(df.to_markdown(index=False), unsafe_allow_html=True)
 
 
