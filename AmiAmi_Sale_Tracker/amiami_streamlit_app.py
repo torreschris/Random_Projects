@@ -1,42 +1,6 @@
 import streamlit as st
 import pandas as pd
 #import os
-import requests
-from datetime import datetime
-import pytz
-
-# GitHub repo details
-owner = "jon-AG"
-repo = "AmiAmi-Sales"
-file_path = "AmiAmi_sales.csv"
-
-# GitHub API URL for file commits
-url = f"https://api.github.com/repos/{owner}/{repo}/commits?path={file_path}&per_page=1"
-
-# Make a request
-response = requests.get(url)
-pst_time = ''
-if response.status_code == 200:
-    commit_data = response.json()
-    if commit_data:
-        creation_date = commit_data[-1]["commit"]["committer"]["date"]
-        # Given UTC time in ISO 8601 format
-        utc_time_str = creation_date
-
-        # Convert to a datetime object
-        utc_time = datetime.strptime(utc_time_str, "%Y-%m-%dT%H:%M:%SZ")
-
-        # Define timezones
-        utc_zone = pytz.utc
-        pst_zone = pytz.timezone("America/Los_Angeles")
-
-        # Convert UTC to PST
-        utc_time = utc_zone.localize(utc_time)  # Mark as UTC timezone
-        pst_time = utc_time.astimezone(pst_zone)  # Convert to PST
-    else:
-        pass
-else:
-    pass
 
 st.set_page_config(layout="wide")
 cols = st.columns(2)
@@ -52,19 +16,14 @@ with cols[1]:
 
 csv_file = 'https://raw.githubusercontent.com/jon-AG/AmiAmi-Sales/refs/heads/main/AmiAmi_sales.csv'
 
-
-
 df = pd.read_csv(csv_file,delimiter='|',header=0)
 
 with st.sidebar:
-    st.image('https://img.amiami.com/images/genre/icon/1001.png')
+
+    st.image('https://img.amiami.com/images/genre/icon/1000.png',use_container_width=True)
     reload = st.button('Reload',use_container_width=True)
     if reload:
         df = pd.read_csv(csv_file,delimiter='|',header=0)
-    st.write('Last updated:')
-    st.write(str(pst_time)[:-6])
-    
-    st.divider()
 
     filter_title = st.multiselect('Filter on Title',df['Title'])
     if filter_title:
