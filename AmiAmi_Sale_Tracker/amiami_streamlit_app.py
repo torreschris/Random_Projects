@@ -25,6 +25,10 @@ with st.sidebar:
     filter_title = st.multiselect('Filter on Title',df['Title'])
     if filter_title:
         df = df[df['Title'].isin(filter_title)]
+    
+    reload = st.button('Reload')
+    if reload:
+        df = pd.read_csv(csv_file,delimiter='|',header=0)
 
 
 c = st.columns(4)
@@ -53,6 +57,7 @@ with c[1]:
         df["Original Price"] = df["Original Price"].apply(lambda x: f"{x:,} JPY")
     elif sortby == "Discounted Price":
         df["Discounted Price"] = df["Discounted Price"].apply(lambda x: f"{x:,} JPY")
+
 
 
 
