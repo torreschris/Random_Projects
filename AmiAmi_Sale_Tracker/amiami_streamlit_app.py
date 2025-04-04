@@ -57,7 +57,7 @@ with c[1]:
 
 
 def image_formatter(url):
-    return f'<img src="{url}" width="100">'
+    return f'<a href="{url}" target="_blank"><img src="{url}" width="200"></a>'
 
 # Convert DataFrame column to Markdown format
 df["Image"] = df["Image"].apply(image_formatter)
