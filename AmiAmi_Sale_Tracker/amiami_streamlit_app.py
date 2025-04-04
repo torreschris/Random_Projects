@@ -56,4 +56,10 @@ with c[1]:
         df["Discounted Price"] = df["Discounted Price"].apply(lambda x: f"{x:,} JPY")
 
 
+def image_formatter(url):
+    return f'<img src="{url}" width="100">'
+
+# Convert DataFrame column to Markdown format
+df["Image"] = df["Image"].apply(image_formatter)
+
 st.write(df.to_markdown(index=False), unsafe_allow_html=True)
