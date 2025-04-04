@@ -59,7 +59,13 @@ with c[1]:
 def image_formatter(url):
     return f'<a href="{url}" target="_blank"><img src="{url}" width="200"></a>'
 
+
+def link_formatter(row):
+    return f'<a href="{row["Link"]}" target="_blank">{row["Title"]}</a>'
+
 # Convert DataFrame column to Markdown format
 df["Image"] = df["Image"].apply(image_formatter)
+df["Title"] = df.apply(link_formatter, axis=1)
+df = df.drop(columns=["Link"])
 
 st.write(df.to_markdown(index=False), unsafe_allow_html=True)
